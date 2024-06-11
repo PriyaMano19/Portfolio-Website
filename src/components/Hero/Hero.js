@@ -26,7 +26,7 @@ const Hero = () => {
           <div className="hero__intro-box">
             <p className="hero__intro-title">
               <span className="hero__intro-line" data-aos="fade-down"></span>
-              Hello, I am Priyanthi
+              Hello, I am Priyanthi Rajamanoharan
             </p>
             <p className="hero__animated-alphabet-box">
               <span

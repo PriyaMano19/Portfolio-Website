@@ -1,5 +1,4 @@
-import React from "react";
-
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLocationDot,
@@ -10,12 +9,36 @@ import {
 import {
   faLinkedin,
   faGithub,
-  faYoutube,
   faUnity,
 } from "@fortawesome/free-brands-svg-icons";
-
+import axios from "axios";
 import "../../styles/Contact/Contact.scss";
+
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:3001/send", formData)
+      .then((response) => {
+        console.log("Message sent: ", response.data);
+        alert("Message sent successfully!");
+      })
+      .catch((error) => {
+        console.error("Error sending message: ", error);
+        alert("Error sending message.");
+      });
+  };
+
   return (
     <>
       <div className="contact" id="contact">
@@ -78,8 +101,7 @@ const Contact = () => {
         <div className="contact__container">
           <div className="contact__details">
             <div className="contact__form" data-aos="fade-up">
-              <form name="contact" method="post">
-                <input type="hidden" name="form-name" value="contact" />
+              <form name="contact" method="post" onSubmit={handleSubmit}>
                 <p className="contact__form-group">
                   <label htmlFor="name">Name: </label>
                   <input
@@ -88,6 +110,8 @@ const Contact = () => {
                     autoComplete="off"
                     placeholder="Enter name"
                     required
+                    value={formData.name}
+                    onChange={handleChange}
                   />
                 </p>
                 <p className="contact__form-group">
@@ -98,6 +122,8 @@ const Contact = () => {
                     autoComplete="off"
                     placeholder="Enter email"
                     required
+                    value={formData.email}
+                    onChange={handleChange}
                   />
                 </p>
                 <p className="contact__form-group">
@@ -108,6 +134,9 @@ const Contact = () => {
                     cols="20"
                     rows="5"
                     placeholder="Type your messsage"
+                    required
+                    value={formData.message}
+                    onChange={handleChange}
                   ></textarea>
                 </p>
                 <button type="submit" className="contact__send-btn">

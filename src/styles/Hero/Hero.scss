@@ -134,7 +134,7 @@
 
     &:hover {
       background: transparent;
-      border: 0.1em solid #ff6347;
+      border: 0.1em solid #ffd1dc;
       color: #ffffff;
     }
   }
@@ -144,8 +144,8 @@
     border: 0.1em solid #e0115f;
 
     &:hover {
-      background: #ff6347;
-      border: 0.1em solid #ff6347;
+      background: #ffd1dc;
+      border: 0.1em solid #ffd1dc;
     }
   }
 
@@ -281,7 +281,7 @@
 }
 
 .alphabet-animated {
-  color: #ff6347;
+  color: #ffd1dc;
   animation: alphabetAnimation 0.7s ease-in-out 1;
 }
 
